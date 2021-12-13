@@ -1,0 +1,151 @@
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+
+
+export default function App(){
+
+
+
+    //variaveis e metodos de conversão de Temperatura
+    var [C, setC]=useState('');
+    var[F, setF]=useState('');
+    var[D,setD]=useState('');
+    function CalcularTemperatura(){
+        //Formula: F=(9*C+160) / 5
+        F=(9 * parseFloat(C) + 160) / 5;
+        D=(parseFloat(C) - 32)/1.8000;
+
+        alert("Celsius Para FAHRENHEIT: " + F + " \nFahrenheit em Celsius: " + D);
+       // alert("TEMPERATURA EM CELSIUS: " + D);
+    }
+
+    //Variáveis e métodos de conversão de unidade de medidas
+    var[Val, setVal]=useState('');
+    var[Cent, setCent]=useState('');
+    var[Pol, setPol]=useState('');
+    function CalcularMedida(){
+        Cent=(parseFloat(Val) * 0.39).toFixed(2);
+        Pol=(parseFloat(Val) / 2.54).toFixed(2);
+
+        alert("Centímetros em Polegadas: " + Pol + "\nPolegadas em centímetros: " + Cent);
+
+    }
+
+
+    //Variáveis e metodos de Conversão de velocidade
+    var[M, setM]=useState('');
+    var[K, setK]=useState('');
+    var[Vr, setVr]=useState('');
+    function CalcularDistancia(){
+        M=(parseFloat(Vr)*0.62137).toFixed(3);
+        K=(parseFloat(Vr)/0.62137).toFixed(3);
+        alert("Milhas em Km: " + K + "\nKm em Milhas: " + M);
+    }
+
+
+
+    return(
+        
+            <View style={styles.container}>
+                <Text style={styles.titulo}>Conversor de Temperatura</Text>
+
+                <TextInput style={styles.campo} 
+                placeholder="Informe a temp. em Graus" 
+                keyboardType='numeric'
+                onChangeText={ (C) => setC(C) }//*
+                ></TextInput>
+
+                <TouchableOpacity style={styles.botao} onPress={CalcularTemperatura}>
+                    <Text style={styles.textoBotao}>Calcular</Text>
+                </TouchableOpacity>
+                
+
+
+
+
+                <Text style={styles.titulo}>Conversor de Medida</Text>
+
+                <TextInput style={styles.campo}
+                placeholder="Informe valor da medida"
+                keyboardType='numeric'
+                onChangeText={ (Val) => setVal(Val)}
+                ></TextInput>
+
+                <TouchableOpacity style={styles.botao} onPress={CalcularMedida}>
+                    <Text style={styles.textoBotao}>Calcular</Text>
+                </TouchableOpacity>
+
+                 
+
+
+                <Text style={styles.titulo}>Conversor de Distancia</Text>
+                <TextInput style={styles.campo}
+                placeholder="Informe a distancia"
+                keyboardType='numeric'
+                onChangeText={ (Vr) => setVr(Vr) }
+                ></TextInput>
+
+                <TouchableOpacity style={styles.botaoMilha} onPress={CalcularDistancia}>
+                    <Text style={styles.textoBotao}>Calcular</Text>
+                </TouchableOpacity>
+                
+
+
+            </View>
+        
+
+        
+    );
+}
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor:"#00008B"
+    },
+   
+    titulo:{
+        textAlign:"center",
+        marginTop: 40,
+        fontSize: 30,
+        color: "#FFF"
+    }, 
+    campo:{
+        backgroundColor:"#FFF",
+        borderRadius:30,
+        margin: 15,
+        padding: 10,
+        fontSize: 15
+    },
+    botao:{
+        justifyContent: 'center',
+        alignItems:'center',
+        margin: 15,
+        backgroundColor:"#FFD700",
+        padding: 10
+    },
+    textoBotao:{
+        fontSize:35
+    },
+
+
+    botaoMilha:{
+        justifyContent: 'center',
+        alignItems:'center',
+        margin: 15,
+        backgroundColor:"#FFD700",
+        padding: 10
+    }
+
+
+
+});
+
+
+
+
+
+
+
+
+
